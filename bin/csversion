@@ -6,7 +6,7 @@ var argv = require('minimist')(process.argv.slice(2));
 var path = require('path');
 var readline = require('readline');
 
-log.runner = 'csver';
+log.runner = 'csversion';
 
 if (argv._.length === 0) {
   log.error('\nUsage: ' + log.runner + ' <csproj-path> [<version-filename>] [<version>]');
