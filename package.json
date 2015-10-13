@@ -1,0 +1,42 @@
+{
+  "name": "csversion",
+  "description": "Configures your C# project to allow easy versioning",
+  "version": "0.1.2",
+  "homepage": "https://github.com/trydis/csversion",
+  "author": {
+    "name": "Morten Trydal",
+    "url": "https://github.com/trydis"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/trydis/csversion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trydis/csversion/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/trydis/csversion/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "cli",
+    "command line"
+  ],
+  "files": [
+    "bin",
+    "targets"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "csversion": "bin/csversion"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "dependencies": {
+    "minimist": "~0.0.8",
+    "verbalize": "~0.1.1"
+  }
+}
