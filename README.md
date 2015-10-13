@@ -1,4 +1,6 @@
-# Install
+This will typically be used after doing `File -> New -> project` and makes it easy to follow the [semantic versioning](<http://semver.org/>) convention.
+
+# Install using NPM
 
 ```bash
 npm install -g csversion
@@ -10,7 +12,7 @@ npm install -g csversion
 csversion <csproj-path> [<version-filename>] [<version>]
 ```
 
-Example specifying the default `version-filename` and `version` explicitly.
+Example specifying the `version-filename` and `version` explicitly.
 
 ```bash
 csversion my-project.csproj version.txt 0.1.0-alpha
@@ -20,7 +22,7 @@ csversion my-project.csproj version.txt 0.1.0-alpha
 
 ```
 .
-+-- src
++-- src (may be named whatever you want)
 |   +-- project-name
 |       +-- project-name.csproj
 ```
