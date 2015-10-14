@@ -28,7 +28,8 @@
   ],
   "files": [
     "bin",
-    "targets"
+    "targets",
+    "lib"
   ],
   "preferGlobal": true,
   "bin": {
@@ -40,5 +41,12 @@
   "dependencies": {
     "minimist": "~0.0.8",
     "verbalize": "~0.1.1"
+  },
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1"
   }
 }

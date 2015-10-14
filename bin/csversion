@@ -1,91 +1,21 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
 var log = require('verbalize');
-var argv = require('minimist')(process.argv.slice(2));
-var path = require('path');
-var readline = require('readline');
+var fs = require('fs');
+var csversion = require('../lib/csversion.js');
 
-log.runner = 'csversion';
-
-if (argv._.length === 0) {
+if (process.argv.length === 2) {
   log.error('\nUsage: ' + log.runner + ' <csproj-path> [<version-filename>] [<version>]');
   process.exit();
 }
 
-var csprojPath = argv._[0] || argv.cs;
-var csProjDir = path.dirname(csprojPath);
-var versionFile = argv._[1] || argv.vf || 'version.txt';
-var version = argv._[2] || argv.v || '0.1.0';
-var buildCommonFile = 'BuildCommon.targets';
-var buildCommonSourcePath = __dirname + '/../targets/' + buildCommonFile;
-
-log.info('\nCreating ' + versionFile + ' in ' + csProjDir);
-
-if (fs.existsSync(csProjDir + '/' + versionFile)) {
-  log.warn('[SKIPPED]');
-}
-else {
-  fs.writeFileSync(csProjDir + '/' + versionFile, version);
-  log.success('[DONE]');
-}
-
-log.info('\nCopying ' + buildCommonFile + ' to ' + process.cwd() + '\\build');
-
-if (fs.existsSync('build/' + buildCommonFile)) {
-  log.warn('[SKIPPED]');
-}
-else {
-  var buildCommonContent = fs.readFileSync(buildCommonSourcePath, 'utf8');
-  buildCommonContent = buildCommonContent.replace("{versionFile}", versionFile);
-  if (!fs.existsSync('build')) {
-    fs.mkdirSync('build');
-  }
-  fs.writeFileSync('build/' + buildCommonFile, buildCommonContent);
-  log.success('[DONE]');
-}
-
-log.info('\nAdding targets reference to project file ' + csprojPath);
-
-var pattern = /\n\<\/Project\>/;
-var importBuildCommonTag = '<Import Project="..\\..\\build\\' + buildCommonFile + '" />';
-var csprojContent = fs.readFileSync(csprojPath, 'utf8');
-
-if (csprojContent.indexOf(importBuildCommonTag) > -1) {
-  log.warn('[SKIPPED]');
-}
-else {
-  csprojContent = csprojContent.replace(pattern, '  ' + importBuildCommonTag + '\n</Project>')
-  fs.writeFileSync(csprojPath, csprojContent);
-  log.success('[DONE]');
-}
-
-log.info('\nCommenting out version related attributes from ' + csProjDir + '\\Properties\\AssemblyInfo.cs');
-
-var readLine = readline.createInterface({
-  input: fs.createReadStream(csProjDir + '/Properties/AssemblyInfo.cs'),
-  output: null
+var c = csversion({
+  argv: process.argv,
+  log: log,
+  fs: fs
 });
 
-var versionAttributeRegex = /\[[ ]{0,}assembly:[ ]{0,}Assembly((File|Informational){0,1})*Version[ ]{0,}\("[\w.*-]+"\)[ ]{0,}\]/;
-var commentRegex = /\/\//;
-var assemblyInfoContent = '';
-
-readLine.on('line', function (line) {
-  if (versionAttributeRegex.test(line)) {
-    log.info('\nCommenting out: ' + line);
-    if (commentRegex.test(line)) {
-      log.warn('[SKIPPED]');
-    }
-    else {
-      line = '// ' + line;
-      log.success('[DONE]');
-    }
-  }
-  assemblyInfoContent += line + '\n';
-});
-
-readLine.on('close', function () {
-  fs.writeFileSync(csProjDir + '/Properties/AssemblyInfo.cs', assemblyInfoContent);
-  log.success('\n\n[FINISHED]');
-});
+c.createVersionFile();
+c.copyBuildCommon();
+c.addTargetsReference();
+c.commentOutVersionAttributes();
