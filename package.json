@@ -43,7 +43,8 @@
     "verbalize": "~0.1.1"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "node node_modules/mocha/bin/mocha",
+    "hint": "jshint bin lib test || true"
   },
   "devDependencies": {
     "mocha": "^2.3.3",

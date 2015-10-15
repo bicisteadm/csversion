@@ -4,29 +4,29 @@ var log = require('verbalize');
 var fs = require('fs');
 var csversion = require('../lib/csversion.js');
 
-var quietLog = {
-  info: function () { },
-  success: function () { },
-  warn: function () { }
-};
-
-var argv = ['foo', 'bar', 'fake.csproj'];
-var args;
-
-beforeEach(function () {
-  args = {
-    argv: argv,
-    log: quietLog,
-    fs: fs
-  };
-});
-
-afterEach(function () {
-  sinon.restore(log);
-  sinon.restore(fs);
-});
-
 describe('csversion', function () {
+
+  var quietLog = {
+    info: function () { },
+    success: function () { },
+    warn: function () { }
+  };
+
+  var argv = ['foo', 'bar', 'fake.csproj'];
+  var args;
+
+  beforeEach(function () {
+    args = {
+      argv: argv,
+      log: quietLog,
+      fs: fs
+    };
+  });
+
+  afterEach(function () {
+    sinon.restore(log);
+    sinon.restore(fs);
+  });
 
   it('should create version.txt if non-existent', function () {
     sinon.stub(fs, 'existsSync').returns(false);
