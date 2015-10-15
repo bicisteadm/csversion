@@ -3,8 +3,10 @@ This will typically be used after doing `File -> New -> Project` and makes it ea
 # Install using NPM
 
 ```bash
-npm install -g csversion
+npm install csversion -g
 ```
+
+[![NPM](https://nodei.co/npm/csversion.png)](npmjs.com/package/csversion)
 
 # Usage
 
