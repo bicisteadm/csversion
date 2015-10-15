@@ -20,6 +20,8 @@ Example specifying the `version-filename` and `version` explicitly.
 csversion my-project.csproj version.txt 0.1.0-alpha
 ```
 
+**Important: if the `csproj-path` contains spaces, you must surround it with quotes.**
+
 # What it does
 
 Using the example values from above.
