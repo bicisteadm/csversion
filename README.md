@@ -6,7 +6,7 @@ This will typically be used after doing `File -> New -> Project` and makes it ea
 npm install csversion -g
 ```
 
-[![NPM](https://nodei.co/npm/csversion.png)](npmjs.com/package/csversion)
+[![NPM](https://nodei.co/npm/csversion.png)](https://www.npmjs.com/package/csversion)
 
 # Usage
 
