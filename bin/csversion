@@ -4,6 +4,8 @@ var log = require('verbalize');
 var fs = require('fs');
 var csversion = require('../lib/csversion.js');
 
+log.runner = 'csversion';
+
 if (process.argv.length === 2) {
   log.error('\nUsage: ' + log.runner + ' <csproj-path> [<version-filename>] [<version>]');
   process.exit();
