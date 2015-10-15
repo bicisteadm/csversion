@@ -44,6 +44,7 @@
   },
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha",
+    "test-watch": "node node_modules/mocha/bin/mocha -w",
     "hint": "jshint bin lib test || true"
   },
   "devDependencies": {
