@@ -48,8 +48,4 @@ Change the version in `version.txt` and build to change the version number.
 +-- src (may be named whatever you want)
 |   +-- project-name
 |       +-- project-name.csproj
-```
-
-# .gitignore
-
-`AssemblyVersion.cs` should be added to the `.gitignore` file, since it will be (re)created when building the project.  
+```  
