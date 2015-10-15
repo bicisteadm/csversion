@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <Compile Include="$(IntermediateOutputPath)AssemblyVersion.cs" />
+    <FileWrites Include="$(IntermediateOutputPath)AssemblyVersion.cs"/>
   </ItemGroup>
 
 </Project>
