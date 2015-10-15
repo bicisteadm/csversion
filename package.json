@@ -1,7 +1,7 @@
 {
   "name": "csversion",
   "description": "Configures your C# project to allow easy versioning",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/trydis/csversion",
   "author": {
     "name": "Morten Trydal",
