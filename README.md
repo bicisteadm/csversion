@@ -33,7 +33,7 @@ Using the example values from above.
 
 # Result
 
-Using the example values from above, when the project is built, the following attributes will be set in `Properties\AssemblyVersion.cs`:
+Using the example values from above, when the project is built, the following attributes will be added to `AssemblyVersion.cs` and included in the build:
 
 * `[assembly: System.Reflection.AssemblyVersion("0.1.0")]`
 * `[assembly: System.Reflection.AssemblyFileVersion("0.1.0")]`
